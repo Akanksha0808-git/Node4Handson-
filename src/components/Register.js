@@ -44,7 +44,7 @@ function Register() {
         <input type="text" name="phone" placeholder="Phone" onChange={handleInputChange} required />
         <label htmlFor="email">Email</label>
         <input type="email" name="email" placeholder="Email" onChange={handleInputChange} required />
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Password</label>
         <input type="password" name="password" placeholder="Password" onChange={handleInputChange} required />
         
         <button  className="btn-submit" type="submit">Register</button>
