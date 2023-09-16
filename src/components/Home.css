@@ -1,0 +1,10 @@
+.parent{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+   
+}
+.hometxt{
+    font-size: 60px;
+    color: rgb(255, 255, 255);
+}

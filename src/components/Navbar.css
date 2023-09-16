@@ -1,0 +1,34 @@
+.nav-container{
+   width: 100%;
+   background-color: rgba(134, 0, 197, 0.418);
+}
+
+  .activeClass{
+   
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 20px;
+    color: black;
+    transition: all 0.3s ease-out;
+}
+
+.notactiveClass{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    transition-delay: 0.2s ease;
+}
+.nav-items{
+    height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; 
+}
+.user-signup {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .nav-links:hover{
+   color:rgba(128, 128, 128, 0.553)
+  }
