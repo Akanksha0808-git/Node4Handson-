@@ -2,6 +2,8 @@
 import React, { useEffect,useState } from 'react';
 import axios from "axios"
 import "./Compo.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'; // Import the specific icons you nee
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
@@ -11,7 +13,10 @@ function Login() {
     password: "",
   });
   const [Server, setServer] = useState();
-
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -22,7 +27,7 @@ function Login() {
 
     console.log(formData);
     //axios.post("url",inputs) to send the data to the backend server
-    axios.post(`https://akanksharma-node4handson.onrender.com/api/login`, formData)
+    axios.post(`http://localhost:5000/api/login`, formData)
       .then((res) => {
         console.log(res.data);
         setServer(res.data);
@@ -49,7 +54,22 @@ function Login() {
         <input type="email" name="email" placeholder="Email" onChange={handleInputChange} /></div>
         <div>
         <label htmlFor="password">Password</label>
-        <input type="password" name="password" placeholder="Enter Password"onChange={handleInputChange} />
+        <span className="password-input">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleInputChange}
+            required
+          />
+          <i
+            className={`password-toggle-icon ${showPassword ? "visible" : "hidden"}`}
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+          </i>
+        </span>
         </div>
 
         <button className="btn-submit" type="submit">Login</button>
