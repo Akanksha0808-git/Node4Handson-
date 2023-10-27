@@ -30,7 +30,7 @@ function Register() {
 
     console.log(formData);
     // axios.post("url", inputs) to send the data to the backend server
-    axios.post(`http://localhost:5000/api/register`, formData)
+    axios.post(`https://handson-4-node.onrender.com/api/register`, formData)
       .then((res) => {
         console.log(res.data);
         alert(res.data.msg)

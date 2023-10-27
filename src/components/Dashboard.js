@@ -6,7 +6,7 @@ function Dashboard() {
   const token = localStorage.getItem("token");
   useEffect(() => {
     if(token){
-      axios.get(`http://localhost:5000/api/dashboard`, {
+      axios.get(`https://handson-4-node.onrender.com/api/dashboard`, {
         headers: { "Authorization":`Bearer ${token }`}
       })
       .then((res) => {
