@@ -40,6 +40,7 @@ function Login() {
     if (Server) {
       localStorage.setItem("token", Server.token);
       if (Server.msg === "User is LoggedIn successfully") {
+        alert(Server.msg)
         Navi("/dashboard");
       }
     }

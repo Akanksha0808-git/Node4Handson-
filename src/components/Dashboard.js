@@ -1,28 +1,36 @@
-
-import React, { useEffect } from "react";
 import axios from "axios";
-
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 function Dashboard() {
+  const navi=useNavigate();
   const token = localStorage.getItem("token");
-
   useEffect(() => {
-    axios
-      .get(`https://akanksharma-node4handson.onrender.com/api/dashboard`, {
-        headers: { Authorization: token },
+    if(token){
+      axios.get(`http://localhost:5000/api/dashboard`, {
+        headers: { "Authorization":`Bearer ${token }`}
       })
       .then((res) => {
         console.log(res.data);
+      
       })
       .catch((err) => {
         console.log(err);
-      });
-  }, [token]);
-
+      });}
+      else{
+        navi("/login")
+      }
+  },[token,navi]);
+  
+  const handleClick=()=>{
+    localStorage.removeItem('token');
+    navi('/login')
+  }
   return (
-    <div style={dashboardStyle}>
-      <h5>Hey, this is your dashboard</h5>
+    <div>
+      <h1 style={dashboardStyle}>Hey !!!this is your dashboard</h1>
+      <div style={btn}><button  onClick={handleClick}>LogOut</button></div>
       <div style={gifContainerStyle}>
-        <img
+      <img
           src="https://cdn.svgator.com/images/2022/11/Chart-run-cycle.gif"
           alt="Running Chart"
           style={gifStyle}
@@ -31,13 +39,17 @@ function Dashboard() {
     </div>
   );
 }
-
 const dashboardStyle = {
-  Backgroundcolor:"yellow",
+ 
+  color:"black",
   textAlign: "center",
   padding: "20px",
 };
-
+const btn={
+  display:"flex",
+  justifyContent:"center",
+  alignItems:"center",
+};
 const gifContainerStyle = {
   display: "flex",
   justifyContent: "center",
@@ -48,6 +60,8 @@ const gifStyle = {
   maxWidth: "100%",
   maxHeight: "100%",
 };
-
 export default Dashboard;
+
+
+
 

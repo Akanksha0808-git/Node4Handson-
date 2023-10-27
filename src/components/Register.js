@@ -33,16 +33,21 @@ function Register() {
     axios.post(`http://localhost:5000/api/register`, formData)
       .then((res) => {
         console.log(res.data);
+        alert(res.data.msg)
         setServer(res.data);
+
+        localStorage.setItem("token",res.formData.token)
+       
       })
       .catch((err) => {
         console.log(err);
-        setServer({
-          name: "",
-          phone: "",
-          email: "",
-          password: "",
-        });
+        
+      });
+      setServer({
+        name: "",
+        phone: "",
+        email: "",
+        password: "",
       });
   }
 
@@ -54,7 +59,7 @@ function Register() {
       </div>
       <form className="formContainer" onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
-        <input type="text" name="name" placeholder="Name"  value={formData.name} onChange={handleInputChange} required />
+        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleInputChange} required />
         <label htmlFor="contact">Phone No.</label>
         <input type="text" name="phone" placeholder="Phone" value={formData.phone} onChange={handleInputChange} required />
         <label htmlFor="email">Email</label>
